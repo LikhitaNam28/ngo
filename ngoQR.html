@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Better Tomorrow Foundation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@404;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* New Color Palette */
+        :root {
+  --color-primary-dark: #F57C00;        /* Sunset Orange - Primary Brand Color */
+  --color-primary-light: #479dcc;       /* Medium Ocean Blue - Lively Accent */
+  --color-accent-orange: #FFA726;       /* Warm secondary orange (lighter coral tone) */
+  --color-hover-orange: #EF6C00;        /* Darker hover orange for interactivity */
+  --color-text-dark: #1C1C1C;           /* Rich dark for body text */
+  --color-text-medium: #444C5C;         /* Soft charcoal for muted text */
+  --color-bg-light: #FFFFFF;            /* Pure white for clarity and contrast */
+  --color-bg-lighter: #F1F8FF;          /* Very light blue background section */
+  --color-border: #D0D7DE;              /* Light gray-blue for borders/dividers */
+  --color-white: #FFFFFF;               /* Utility white */
+  --color-link-hover: #01579B;          /* Deep ocean blue for link hover */
+  --color-footer-bg: #002F6C;           /* Deep navy footer background */
+  --color-footer-text: #E3F2FD;         /* Soft blue for footer text contrast */
+}
+
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--color-text-dark);
+            background-color: var(--color-bg-lighter); /* Use lighter background */
+            font-family: 'Lato', sans-serif; /* New body font */
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif; /* Keep Montserrat for headings */
+            color: var(--color-primary-dark); /* Use darker primary for headings */
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--color-text-medium);
+        }
+
+        /* Navigation */
+        .main-nav {
+            background: #fff; /* Main accent teal */
+            padding: 0.6rem 2rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-nav .logo {
+            color: var(--color-white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin:10px;
+        }
+
+        .main-nav .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-nav .nav-links li {
+            margin: 0 15px;
+        }
+
+        .main-nav .nav-links a {
+            color: black;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 3px;
+            background-color: var(--color-white); /* White underline */
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .main-nav .nav-links a:hover {
+            color: var(--color-white); /* Stays white, underline indicates hover */
+        }
+
+        .main-nav .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Donate button within navigation */
+        .main-nav .nav-links .cta-button-nav {
+            background-color: var(--color-accent-orange); /* New orange */
+            color: var(--color-white);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            margin-left: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-nav .nav-links .cta-button-nav:hover {
+            background-color: var(--color-hover-orange); /* Darker orange on hover */
+            transform: translateY(-2px);
+        }
+
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 1001;
+            
+        }
+
+        .menu-toggle .bar {
+            width: 100%;
+            height: 4px;
+            background-color: black;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+            
+        }
+
+        /* Hamburger Animation */
+        .menu-toggle.open .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('hands.png') no-repeat center center/cover;
+            color: var(--color-white);
+            padding: 6rem 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 450px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(31, 111, 107, 0.65); /* Darker, slightly transparent teal overlay */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            color: var(--color-white);
+            margin-bottom: 1.2rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            animation: fadeInScale 1.5s ease-out forwards;
+            opacity: 0;
+            transform: scale(0.9);
+            font-weight: 800;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #eee;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+            animation: fadeIn 2s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        .hero .cta-button {
+            background-color: var(--color-accent-orange); /* New orange */
+            color: var(--color-white);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 40px;
+            font-size: 1.15rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            animation: fadeIn 2s ease-out 1s forwards;
+            opacity: 0;
+        }
+
+        .hero .cta-button:hover {
+            background-color: var(--color-hover-orange); /* Darker orange on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Section Layout */
+        section {
+            padding: 3rem 2rem;
+            background-color: var(--color-bg-light); /* Off-white background */
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--color-bg-lighter); /* Lighter background for alternate sections */
+        }
+
+        /* About Section */
+        .about .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .about .stat-item {
+            background-color: #0288D1; /* Main accent teal */
+            color: var(--color-white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .about .stat-item .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .about .stat-item .label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Activities Section */
+        .activities .documents {
+            margin-bottom: 2rem;
+            background-color: var(--color-bg-lighter); /* Use lighter background */
+            padding: 1.5rem;
+            border-left: 5px solid var(--color-primary-light); /* Main accent teal border */
+            border-radius: 5px;
+        }
+
+        .activities .documents h3 {
+            color: var(--color-primary-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .activities .documents a {
+            display: block;
+            margin: 8px 0;
+            color: var(--color-primary-light); /* Main accent teal link color */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .activities .documents a:hover {
+            color: var(--color-link-hover); /* Darker teal on hover */
+            text-decoration: underline;
+        }
+
+        .activities .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .activities .gallery img {
+            width: 100%;
+            border-radius: 10px;
+            height: 220px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .activities .gallery img:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Stories of Impact Section */
+        .stories-of-impact .story-item {
+            background-color: var(--color-white); /* White background */
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .stories-of-impact .story-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--color-primary-light); /* Main accent teal border */
+        }
+
+        .stories-of-impact .story-item blockquote {
+            font-style: italic;
+            color: var(--color-text-medium);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .stories-of-impact .story-item cite {
+            display: block;
+            font-weight: bold;
+            color: var(--color-primary-dark);
+        }
+        .stories-of-impact .story-item .role {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+       .contact-us {
+  background: #f4f8fc;
+  padding: 70px 20px;
+  font-family: 'Lato', sans-serif;
+margin-top:-70px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.0rem;
+  font-weight: 700;
+  color: #003366;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contact-card {
+  max-width: 850px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05); /* Softer shadow */
+  padding: 45px 35px;
+  color: #333;
+  transition: all 0.3s ease-in-out; /* All transitions */
+}
+
+.contact-card:hover {
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
+  transform: translateY(-3px);
+}
+
+.contact-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid; /* Use CSS Grid for layout */
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  gap: 25px 40px; /* Space between rows and columns */
+}
+
+.contact-card li {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.contact-card .label {
+  font-weight: 700; /* Bolder label */
+  color: #003366; /* Deeper blue for label */
+  display: block; /* Make label a block element */
+  margin-bottom: 5px; /* Space between label and value */
+  text-transform: uppercase;
+  font-size: 0.9rem; /* Smaller, more subtle label */
+  letter-spacing: 0.5px;
+}
+
+.contact-card a {
+  color: #0056b3;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-card a:hover {
+  text-decoration: underline;
+  color: #007BFF;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contact-card ul {
+    grid-template-columns: 1fr; /* Single column on smaller screens */
+  }
+}
+        /* Footer */
+        footer {
+            background: var(--color-footer-bg); /* Darker, richer teal background */
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            border-top: 5px solid var(--color-primary-light); /* Main accent teal border */
+        }
+         footer p{
+color:#fff;
+}
+
+        footer .social-icons {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        footer .social-icons a {
+            color: var(--color-footer-text); /* Light cyan for social icons */
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        footer .social-icons a:hover {
+            color: var(--color-white); /* White on hover */
+            transform: translateY(-3px);
+        }
+
+        /* Modal (Lightbox) for Images and Donation */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 15px;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+            background-color: var(--color-white);
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Specific styles for Donation Modal */
+        #donationModal .modal-content {
+            text-align: center;
+            padding: 30px;
+            max-width: 500px;
+        }
+
+        #donationModal .modal-content h3 {
+            color: var(--color-primary-dark);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #donationModal .modal-content img.qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1.5rem auto;
+            display: block;
+            border: 1px solid var(--color-border);
+            border-radius: 5px;
+        }
+
+        #donationModal .modal-content p {
+            font-size: 1.1rem;
+            color: var(--color-text-medium);
+            margin-bottom: 1rem;
+        }
+
+        #donationModal .modal-content .payment-details {
+            background-color: var(--color-bg-lighter);
+            border: 1px solid var(--color-border);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: left;
+        }
+        #donationModal .modal-content .payment-details strong {
+            color: var(--color-primary-dark);
+        }
+
+
+        @keyframes zoom {
+            from {transform:scale(0.1)}
+            to {transform:scale(1)}
+        }
+
+        /* The Close Button */
+        .close {
+            position: absolute;
+            top: 5px;
+            right: 20px;
+            color: #aaa;
+            font-size: 35px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #777;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Caption of Image Modal */
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+
+        /* Contact Success Message */
+        #contactSuccessMessage {
+            background-color: #d4edda; /* Light green */
+            color: #155724; /* Dark green text */
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-nav {
+                padding: 0.5rem 1.5rem;
+            }
+            .main-nav .logo {
+                font-size: 1.2rem;
+            }
+            /* Mobile Navigation - slide-in from right */
+            .main-nav .nav-links {
+                display: flex;
+                flex-direction: column;
+                width: 70%;
+                max-width: 300px;
+                background: var(--color-primary-light); /* Main accent teal for mobile menu */
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100%;
+                padding-top: 70px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+                transition: right 0.4s ease-in-out;
+                z-index: 999;
+            }
+            .main-nav .nav-links.active {
+                right: 0;
+            }
+
+            .main-nav .nav-links li {
+                margin: 0;
+            }
+            .main-nav .nav-links a {
+                padding: 15px 20px;
+                font-size: 1rem;
+                display: block;
+                text-align: left;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .main-nav .nav-links li:last-child a {
+                border-bottom: none;
+            }
+            .main-nav .nav-links a::after {
+                display: none;
+            }
+            .main-nav .nav-links .cta-button-nav {
+                padding: 10px 20px;
+                font-size: 1rem;
+                margin: 15px 20px;
+                text-align: center;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Overlay for mobile menu */
+            body.menu-open {
+                overflow: hidden;
+            }
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.6);
+                z-index: 998;
+            }
+            .overlay.active {
+                display: block;
+            }
+
+
+            .hero {
+                padding: 4rem 1.5rem;
+                min-height: 350px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero .cta-button {
+                font-size: 1rem;
+                padding: 10px 22px;
+            }
+            section {
+                padding: 2rem 1.5rem;
+            }
+            .activities .gallery {
+                grid-template-columns: 1fr;
+            }
+            .about .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact form {
+                gap: 10px;
+            }
+            .stories-of-impact .story-item {
+                padding: 1rem;
+            }
+            .stories-of-impact .story-item blockquote {
+                font-size: 1rem;
+            }
+            .modal-content {
+                width: 90%;
+            }
+            #donationModal .modal-content h3 {
+                font-size: 1.5rem;
+            }
+            #donationModal .modal-content img.qr-code {
+                width: 150px;
+                height: 150px;
+            }
+            #donationModal .modal-content p {
+                font-size: 0.95rem;
+            }
+            #donationModal .modal-content .payment-details {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-nav .logo {
+                font-size: 1.2rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 0.95rem;
+            }
+            section {
+                padding: 1.5rem 1rem;
+            }
+            .about .stat-item .number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <a href="#" class="logo"><img src="logo.png" height="80" width="80"></img></a>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#activities">Our Work</a></li>
+            <li><a href="#stories">Impact Stories</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#" class="cta-button-nav" id="openDonateModalNav">Donate</a></li>
+        </ul>
+    </nav>
+
+    <div class="overlay" id="menu-overlay"></div>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Making a Difference, One Hand at a Time</h1>
+            <p>Your support empowers communities and creates lasting change for a brighter future.</p>
+            <a href="#" class="cta-button" id="openDonateModalHero">Get Involved Today</a>
+        </div>
+    </div>
+
+    <section id="about" class="about">
+        <h2>About</h2>
+        <p>
+            As part of our ongoing commitment to supporting individuals facing critical health challenges, our Better Tomorrow Foundation is currently assisting Ms. Mohammad Mubeen  with medical care and treatment for a permanent health condition. Recognizing the lifelong nature of this illness, we are providing financial support for essential medications and healthcare services to help manage the condition and improve their quality of life. Our goal is to ensure that no individual is left behind due to the high cost of long-term treatment, and we remain dedicated to offering continued support in their journey toward better health and stability.        </p>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="number" data-target="15000">0</span>
+                <span class="label">Lives Impacted</span>
+            </div>
+            <div class="stat-item">
+                <span class="number" data-target="5000">0</span>
+                <span class="label">Meals Provided</span>
+            </div>
+            <div class="stat-item">
+                <span class="number" data-target="850">0</span>
+                <span class="label">Children Educated</span>
+            </div>
+            <div class="stat-item">
+                <span class="number" data-target="200">0</span>
+                <span class="label">Active Volunteers</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="activities" class="activities">
+        <h2>Our Recent Activity</h2>
+        <p>
+           Lifelong Medical Support for Ms. Mohammad Mubeen  <br>
+           ✅ Ongoing monthly financial assistance for critical medication. <br>
+
+✅ Regular check-ins with healthcare providers. <br>
+
+✅ Emergency medical support as needed. <br>
+
+✅ Transportation and consultation support where possible. <br>
+        </p>
+        <div class="documents">
+            <h3>Important Documents</h3>
+            <a href="Discharge summary and OP.pdf" target="_blank">Discharge summary and OP  <i class="fas fa-file-pdf"></i></a>
+            <a href="Invoice from past 6 months.pdf" target="_blank">Invoice from past 6 months  <i class="fas fa-file-pdf"></i></a>
+            <a href="Thanks letter.pdf" target="_blank">Thanks Letter  <i class="fas fa-file-pdf"></i></a>
+        </div>
+
+        <div class="gallery">
+            <img src="Dialysis-Catheter.webp" alt="Community Event" data-caption="Undergoing Dialysis process">
+            <img src="medicine.jpg" alt="Volunteer Work" data-caption="Our dedicated volunteers in action.">
+            <img src="hand.jpg" alt="Donation Drive" data-caption="Distributing essential supplies to families.">
+           
+        </div>
+    </section>
+
+    <div id="imageModal" class="modal">
+        <span class="close" id="closeImageModal">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
+    <div id="donationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeDonationModal">&times;</span>
+            <h4>Support Our Mission</h4>
+            <p>Scan the QR code below with any UPI app to make a quick and secure donation.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="Donation QR Code" class="qr-code">
+            <div class="payment-details">
+                <p><strong>UPI ID:</strong> YOURUPIID@BANK</p>
+                <p><strong>Bank Account:</strong> BANKACCOUNTNUMBER</p>
+                <p><strong>Account Name:</strong> Helping Hands Foundation</p>
+                <p><strong>IFSC Code:</strong> HHF0000123</p>
+            </div>
+            <p style="margin-top: 1.5rem; font-style: italic;">Every contribution, big or small, helps us continue our vital work.</p>
+        </div>
+    </div>
+
+    <section id="stories" class="stories-of-impact">
+        <h2>Stories of Impact</h2>
+        <p>Hear directly from the people whose lives have been touched by your support and our efforts.</p>
+
+        <div class="story-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAp3jJY-pOHTZw8MfMD58Vb523INg8tlns7yBIHS_qbUOuBXKfSMcMs8XgG7SDh4w8St8&usqp=CAU" alt="Beneficiary 1">
+            <blockquote>"Thanks to Better Tomorrow Foundation, my children can now attend school regularly. It has changed our lives forever."</blockquote>
+            <cite>Priya Sharma <span class="role">(Beneficiary)</span></cite>
+        </div>
+
+        <div class="story-item">
+            <img src="https://lucid.content-delivery-one.com/cdn-cgi/image/w=600,format=auto,metadata=none/66c4384702f8f.png" alt="Volunteer 1">
+            <blockquote>"Volunteering with Better Tomorrow Foundation has been one of the most rewarding experiences. Seeing the smiles we bring makes every effort worthwhile."</blockquote>
+            <cite>Ravi Kumar <span class="role">(Volunteer)</span></cite>
+        </div>
+
+        <div class="story-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8JBlGcj9v0PDkuexXuNPiTW6753JTPBUjMw&s" alt="Beneficiary 2">
+            <blockquote>"The medical camp provided critical care when we needed it most. We are incredibly grateful for their assistance."</blockquote>
+            <cite>Geeta Devi <span class="role">(Beneficiary)</span></cite>
+        </div>
+    </section>
+<section id="contact" class="contact-us">
+  <div class="container">
+    <h3 class="section-title">Contact Us</h3>
+    <div class="contact-card">
+      <ul>
+        <li><span class="label">NGO Name</span> Better Tomorrow Foundation</li>
+        <li><span class="label">Registration Office</span>
+Better Tomorrow Foundation<br>
+662, Akshadham apartments, Sec-19, Pkt-3, Dwarka, New Delhi 110078</li>
+        <li><span class="label">Corporate Address</span>14th Floor, Ocus Mediey Tower, Dwarka Expressway, Sector-99, Gurugram Haryana 122001</li>
+        <li><span class="label">Phone</span> <a href="tel:+91-886065066">+91-886065066</a></li>
+        <li><span class="label">Email</span> <a href="mailto:bettertomorrowngo@gmail.com">bettertomorrowngo@gmail.com</a></li>
+        <li><span class="label">Website</span> <a href="https://www.bettertomorrow.ngo" target="_blank">www.bettertomorrow.ngo</a></li>
+        </ul>
+    </div>
+  </div>
+</section>
+    <footer>
+        <p>&copy; 2025 Better Tomorrow Foundation | All Rights Reserved.</p>
+        <div class="social-icons">
+          <!--  <a href="https://www.facebook.com/yourngo" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> -->
+           <a href="tel:+91-886065066" target="_blank" aria-label="Twitter"><i class="fa-solid fa-phone"></i></a> 
+            <a href="https://www.instagram.com/bettertomorrowfoundation11/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+           <a href="mailto:bettertomorrowngo@gmail.com" target="_blank" aria-label="LinkedIn"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const body = document.body; // Reference to the body element
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenu.classList.toggle('open'); // Toggle hamburger animation
+            menuOverlay.classList.toggle('active'); // Toggle overlay
+            body.classList.toggle('menu-open'); // Prevent body scroll
+        });
+
+        // Close mobile menu when clicking on overlay
+        menuOverlay.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            mobileMenu.classList.remove('open');
+            menuOverlay.classList.remove('active');
+            body.classList.remove('menu-open');
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            // Only add event listener if it's not the donate button (which opens a modal)
+            if (!anchor.classList.contains('cta-button-nav')) {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    navLinks.classList.remove('active'); // Close menu on link click (mobile)
+                    mobileMenu.classList.remove('open'); // Close hamburger animation
+                    menuOverlay.classList.remove('active'); // Hide overlay
+                    body.classList.remove('menu-open'); // Re-enable body scroll
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+
+        
+        // Animated Number Counters
+        const statsGrid = document.querySelector('.stats-grid');
+        const counters = document.querySelectorAll('.stat-item .number');
+        const speed = 200;
+
+        const animateCounter = (counter) => {
+            const target = +counter.getAttribute('data-target');
+            let current = 0;
+            const increment = target / speed;
+
+            const updateCounter = () => {
+                if (current < target) {
+                    current += increment;
+                    counter.innerText = Math.ceil(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCounter();
+        };
+
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.classList.contains('stats-grid')) {
+                    counters.forEach(animateCounter);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+
+        if (statsGrid) {
+            observer.observe(statsGrid);
+        }
+
+        // Section Scroll Animations (Fade In)
+        const sections = document.querySelectorAll('section');
+
+        const sectionObserverOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, sectionObserverOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Image Lightbox (Modal)
+        const imageModal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("img01");
+        const captionText = document.getElementById("caption");
+        const galleryImages = document.querySelectorAll(".activities .gallery img");
+        const closeImageModalBtn = document.getElementById("closeImageModal");
+
+        galleryImages.forEach(img => {
+            img.onclick = function(){
+                imageModal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+                if (this.dataset.caption) {
+                    captionText.innerHTML = this.dataset.caption;
+                }
+            }
+        });
+
+        closeImageModalBtn.onclick = function() {
+            imageModal.style.display = "none";
+        }
+
+        imageModal.onclick = function(event) {
+            if (event.target == imageModal) {
+                imageModal.style.display = "none";
+            }
+        }
+
+        // Donation Modal
+        const donationModal = document.getElementById("donationModal");
+        const openDonateModalNav = document.getElementById("openDonateModalNav");
+        const openDonateModalHero = document.getElementById("openDonateModalHero");
+        const closeDonationModalBtn = document.getElementById("closeDonationModal");
+
+        openDonateModalNav.onclick = function(e) {
+            e.preventDefault();
+            donationModal.style.display = "block";
+            navLinks.classList.remove('active'); // Close mobile menu if open
+            mobileMenu.classList.remove('open'); // Close hamburger animation
+            menuOverlay.classList.remove('active'); // Hide overlay
+            body.classList.remove('menu-open'); // Re-enable body scroll
+        }
+
+        openDonateModalHero.onclick = function(e) {
+            e.preventDefault();
+            donationModal.style.display = "block";
+        }
+
+        closeDonationModalBtn.onclick = function() {
+            donationModal.style.display = "none";
+        }
+
+        donationModal.onclick = function(event) {
+            if (event.target == donationModal) {
+                donationModal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
