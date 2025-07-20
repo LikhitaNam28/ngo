@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Helping Hands Foundation | Empowering Lives</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@404;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* New Color Palette */
+        :root {
+            --color-primary-dark: #1F6F6B; /* Deeper, more sophisticated teal-green */
+            --color-primary-light: #2BA098; /* Main accent teal, slightly vibrant */
+            --color-accent-orange: #FF7F50; /* Coral - a warm, inviting orange */
+            --color-hover-orange: #E66C44; /* Darker coral for hover */
+            --color-text-dark: #34495e; /* Darker charcoal for main text */
+            --color-text-medium: #555;
+            --color-bg-light: #fdfdfd; /* Off-white for sections */
+            --color-bg-lighter: #edf7f6; /* Very light teal-tinted background for alternate sections */
+            --color-border: #e0e0e0;
+            --color-white: #ffffff;
+            --color-link-hover: #175451; /* Darker shade for link hovers */
+            --color-footer-bg: #1A4D4A; /* Darker, richer teal for footer */
+            --color-footer-text: #E0FFFF; /* Light cyan for footer text for contrast */
+        }
+
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--color-text-dark);
+            background-color: var(--color-bg-lighter); /* Use lighter background */
+            font-family: 'Lato', sans-serif; /* New body font */
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif; /* Keep Montserrat for headings */
+            color: var(--color-primary-dark); /* Use darker primary for headings */
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--color-text-medium);
+        }
+
+        /* Navigation */
+        .main-nav {
+            background: var(--color-primary-light); /* Main accent teal */
+            padding: 0.6rem 2rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-nav .logo {
+            color: var(--color-white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin:10px;
+        }
+
+        .main-nav .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-nav .nav-links li {
+            margin: 0 15px;
+        }
+
+        .main-nav .nav-links a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 3px;
+            background-color: var(--color-white); /* White underline */
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .main-nav .nav-links a:hover {
+            color: var(--color-white); /* Stays white, underline indicates hover */
+        }
+
+        .main-nav .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Donate button within navigation */
+        .main-nav .nav-links .cta-button-nav {
+            background-color: var(--color-accent-orange); /* New orange */
+            color: var(--color-white);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            margin-left: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-nav .nav-links .cta-button-nav:hover {
+            background-color: var(--color-hover-orange); /* Darker orange on hover */
+            transform: translateY(-2px);
+        }
+
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle .bar {
+            width: 100%;
+            height: 3px;
+            background-color: var(--color-white);
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Hamburger Animation */
+        .menu-toggle.open .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://source.unsplash.com/1920x600/?charity,helping,community,children,donate,hope,unity') no-repeat center center/cover;
+            color: var(--color-white);
+            padding: 6rem 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 450px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(31, 111, 107, 0.65); /* Darker, slightly transparent teal overlay */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            color: var(--color-white);
+            margin-bottom: 1.2rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            animation: fadeInScale 1.5s ease-out forwards;
+            opacity: 0;
+            transform: scale(0.9);
+            font-weight: 800;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #eee;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+            animation: fadeIn 2s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        .hero .cta-button {
+            background-color: var(--color-accent-orange); /* New orange */
+            color: var(--color-white);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 40px;
+            font-size: 1.15rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            animation: fadeIn 2s ease-out 1s forwards;
+            opacity: 0;
+        }
+
+        .hero .cta-button:hover {
+            background-color: var(--color-hover-orange); /* Darker orange on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Section Layout */
+        section {
+            padding: 3rem 2rem;
+            background-color: var(--color-bg-light); /* Off-white background */
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--color-bg-lighter); /* Lighter background for alternate sections */
+        }
+
+        /* About Section */
+        .about .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .about .stat-item {
+            background-color: var(--color-primary-light); /* Main accent teal */
+            color: var(--color-white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .about .stat-item .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .about .stat-item .label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Activities Section */
+        .activities .documents {
+            margin-bottom: 2rem;
+            background-color: var(--color-bg-lighter); /* Use lighter background */
+            padding: 1.5rem;
+            border-left: 5px solid var(--color-primary-light); /* Main accent teal border */
+            border-radius: 5px;
+        }
+
+        .activities .documents h3 {
+            color: var(--color-primary-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .activities .documents a {
+            display: block;
+            margin: 8px 0;
+            color: var(--color-primary-light); /* Main accent teal link color */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .activities .documents a:hover {
+            color: var(--color-link-hover); /* Darker teal on hover */
+            text-decoration: underline;
+        }
+
+        .activities .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .activities .gallery img {
+            width: 100%;
+            border-radius: 10px;
+            height: 220px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .activities .gallery img:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Stories of Impact Section */
+        .stories-of-impact .story-item {
+            background-color: var(--color-white); /* White background */
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .stories-of-impact .story-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--color-primary-light); /* Main accent teal border */
+        }
+
+        .stories-of-impact .story-item blockquote {
+            font-style: italic;
+            color: var(--color-text-medium);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .stories-of-impact .story-item cite {
+            display: block;
+            font-weight: bold;
+            color: var(--color-primary-dark);
+        }
+        .stories-of-impact .story-item .role {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        /* Contact Section */
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact input,
+        .contact textarea {
+            padding: 12px;
+            font-size: 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact input:focus,
+        .contact textarea:focus {
+            outline: none;
+            border-color: var(--color-primary-light); /* Main accent teal border on focus */
+            box-shadow: 0 0 0 3px rgba(43, 160, 152, 0.2); /* Teal shadow */
+        }
+
+        .contact textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact button {
+            background: var(--color-primary-dark); /* Darker teal button */
+            color: var(--color-white);
+            padding: 12px 20px;
+            border: none;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+        }
+
+        .contact button:hover {
+            background: var(--color-primary-light); /* Lighter teal on hover */
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-footer-bg); /* Darker, richer teal background */
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            border-top: 5px solid var(--color-primary-light); /* Main accent teal border */
+        }
+         footer p{
+color:#fff;
+}
+
+        footer .social-icons {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        footer .social-icons a {
+            color: var(--color-footer-text); /* Light cyan for social icons */
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        footer .social-icons a:hover {
+            color: var(--color-white); /* White on hover */
+            transform: translateY(-3px);
+        }
+
+        /* Modal (Lightbox) for Images and Donation */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+            background-color: var(--color-white);
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Specific styles for Donation Modal */
+        #donationModal .modal-content {
+            text-align: center;
+            padding: 30px;
+            max-width: 500px;
+        }
+
+        #donationModal .modal-content h3 {
+            color: var(--color-primary-dark);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #donationModal .modal-content img.qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1.5rem auto;
+            display: block;
+            border: 1px solid var(--color-border);
+            border-radius: 5px;
+        }
+
+        #donationModal .modal-content p {
+            font-size: 1.1rem;
+            color: var(--color-text-medium);
+            margin-bottom: 1rem;
+        }
+
+        #donationModal .modal-content .payment-details {
+            background-color: var(--color-bg-lighter);
+            border: 1px solid var(--color-border);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: left;
+        }
+        #donationModal .modal-content .payment-details strong {
+            color: var(--color-primary-dark);
+        }
+
+
+        @keyframes zoom {
+            from {transform:scale(0.1)}
+            to {transform:scale(1)}
+        }
+
+        /* The Close Button */
+        .close {
+            position: absolute;
+            top: 5px;
+            right: 20px;
+            color: #aaa;
+            font-size: 35px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #777;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Caption of Image Modal */
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+
+        /* Contact Success Message */
+        #contactSuccessMessage {
+            background-color: #d4edda; /* Light green */
+            color: #155724; /* Dark green text */
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-nav {
+                padding: 0.5rem 1.5rem;
+            }
+            .main-nav .logo {
+                font-size: 1.2rem;
+            }
+            /* Mobile Navigation - slide-in from right */
+            .main-nav .nav-links {
+                display: flex;
+                flex-direction: column;
+                width: 70%;
+                max-width: 300px;
+                background: var(--color-primary-light); /* Main accent teal for mobile menu */
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100%;
+                padding-top: 70px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+                transition: right 0.4s ease-in-out;
+                z-index: 999;
+            }
+            .main-nav .nav-links.active {
+                right: 0;
+            }
+
+            .main-nav .nav-links li {
+                margin: 0;
+            }
+            .main-nav .nav-links a {
+                padding: 15px 20px;
+                font-size: 1rem;
+                display: block;
+                text-align: left;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .main-nav .nav-links li:last-child a {
+                border-bottom: none;
+            }
+            .main-nav .nav-links a::after {
+                display: none;
+            }
+            .main-nav .nav-links .cta-button-nav {
+                padding: 10px 20px;
+                font-size: 1rem;
+                margin: 15px 20px;
+                text-align: center;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Overlay for mobile menu */
+            body.menu-open {
+                overflow: hidden;
+            }
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.6);
+                z-index: 998;
+            }
+            .overlay.active {
+                display: block;
+            }
+
+
+            .hero {
+                padding: 4rem 1.5rem;
+                min-height: 350px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero .cta-button {
+                font-size: 1rem;
+                padding: 10px 22px;
+            }
+            section {
+                padding: 2rem 1.5rem;
+            }
+            .activities .gallery {
+                grid-template-columns: 1fr;
+            }
+            .about .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact form {
+                gap: 10px;
+            }
+            .stories-of-impact .story-item {
+                padding: 1rem;
+            }
+            .stories-of-impact .story-item blockquote {
+                font-size: 1rem;
+            }
+            .modal-content {
+                width: 90%;
+            }
+            #donationModal .modal-content h3 {
+                font-size: 1.5rem;
+            }
+            #donationModal .modal-content img.qr-code {
+                width: 150px;
+                height: 150px;
+            }
+            #donationModal .modal-content p {
+                font-size: 0.95rem;
+            }
+            #donationModal .modal-content .payment-details {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-nav .logo {
+                font-size: 1.2rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 0.95rem;
+            }
+            section {
+                padding: 1.5rem 1rem;
+            }
+            .about .stat-item .number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <a href="#" class="logo">Helping Hands</a>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#activities">Our Work</a></li>
+            <li><a href="#stories">Impact Stories</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#" class="cta-button-nav" id="openDonateModalNav">Donate</a></li>
+        </ul>
+    </nav>
+
+    <div class="overlay" id="menu-overlay"></div>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Making a Difference, One Hand at a Time</h1>
+            <p>Your support empowers communities and creates lasting change for a brighter future.</p>
+            <a href="#" class="cta-button" id="openDonateModalHero">Get Involved Today</a>
+        </div>
+    </div>
+
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>
+            Helping Hands Foundation is a non-profit organization dedicated to improving the lives of underprivileged communities through education, healthcare, and sustainable development. Our mission is to empower individuals and bring positive change through active participation and community engagement. We believe in creating a world where everyone has the opportunity to thrive.
+        </p>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="number" data-target="15000">0</span>
+                <span class="label">Lives Impacted</span>
+            </div>
+            <div class="stat-item">
+                <span class="number" data-target="5000">0</span>
+                <span class="label">Meals Provided</span>
+            </div>
+            <div class="stat-item">
+                <span class="number" data-target="850">0</span>
+                <span class="label">Children Educated</span>
+            </div>
+            <div class="stat-item">
+                <span class="number" data-target="200">0</span>
+                <span class="label">Active Volunteers</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="activities" class="activities">
+        <h2>Our Activities</h2>
+        <p>
+            We engage in a variety of activities aimed at holistic community development. From educational programs to health camps and environmental initiatives, our work spans across multiple sectors to address the diverse needs of the communities we serve.
+        </p>
+        <div class="documents">
+            <h3>Important Documents</h3>
+            <a href="https://app.drntrvaidyaseva.ap.gov.in/ASRI/empanelment/sample/document_0.pdf" target="_blank">Activity Report 2024 <i class="fas fa-file-pdf"></i></a>
+            <a href="https://tgiic.telangana.gov.in/filePreview/custom/Check%20List%20for%20Building%20Permission%20?fileName=CMS/File_270720220302507432815221.TSIIC-Building-application-Check-list.pdf" target="_blank">Financial Report 2023 <i class="fas fa-file-pdf"></i></a>
+            <a href="https://app.drntrvaidyaseva.ap.gov.in/ASRI/empanelment/sample/document_0.pdf" target="_blank">Annual Impact Summary <i class="fas fa-file-pdf"></i></a>
+        </div>
+
+        <div class="gallery">
+            <img src="https://cdn.sanity.io/images/cphrnle8/production/dc4e70fbc0520f2a2656a880832b76340277a7d1-3360x1680.webp?w=2560&q=100&fit=max" alt="Community Event" data-caption="Organizing community awareness events.">
+            <img src="https://static.resumegiants.com/wp-content/uploads/sites/25/2021/12/17150158/volunteer-experience-resume-736x414.webp" alt="Volunteer Work" data-caption="Our dedicated volunteers in action.">
+            <img src="https://i1.wp.com/apeejay.news/wp-content/uploads/2022/12/WhatsApp-Image-2022-12-21-at-11.18.10-AM-1-1024x768.jpeg?ssl=1" alt="Donation Drive" data-caption="Distributing essential supplies to families.">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxQeWdu14naNMWKrf4lce1CCFJ6JMR1-nzAw&s" alt="Children Education" data-caption="Supporting primary education for underprivileged children.">
+            <img src="https://littleumbrellafoundation.org/wp-content/uploads/2022/06/WhatsApp-Image-2022-06-04-at-10.21.04-AM-2-1024x768.jpeg.webp" alt="Health Camp" data-caption="Providing free health check-ups and medical assistance.">
+            <img src="https://sashakt.org.in/wp-content/uploads/2022/11/1-Final-Afforestation-1024x768.jpg" alt="Tree Planting" data-caption="Environmental initiatives for a greener future.">
+        </div>
+    </section>
+
+    <div id="imageModal" class="modal">
+        <span class="close" id="closeImageModal">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
+    <div id="donationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeDonationModal">&times;</span>
+            <h4>Support Our Mission</h4>
+            <p>Scan the QR code below with any UPI app to make a quick and secure donation.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="Donation QR Code" class="qr-code">
+            <div class="payment-details">
+                <p><strong>UPI ID:</strong> YOURUPIID@BANK</p>
+                <p><strong>Bank Account:</strong> BANKACCOUNTNUMBER</p>
+                <p><strong>Account Name:</strong> Helping Hands Foundation</p>
+                <p><strong>IFSC Code:</strong> HHF0000123</p>
+            </div>
+            <p style="margin-top: 1.5rem; font-style: italic;">Every contribution, big or small, helps us continue our vital work.</p>
+        </div>
+    </div>
+
+    <section id="stories" class="stories-of-impact">
+        <h2>Stories of Impact</h2>
+        <p>Hear directly from the people whose lives have been touched by your support and our efforts.</p>
+
+        <div class="story-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAp3jJY-pOHTZw8MfMD58Vb523INg8tlns7yBIHS_qbUOuBXKfSMcMs8XgG7SDh4w8St8&usqp=CAU" alt="Beneficiary 1">
+            <blockquote>"Thanks to Helping Hands Foundation, my children can now attend school regularly. It has changed our lives forever."</blockquote>
+            <cite>Priya Sharma <span class="role">(Beneficiary)</span></cite>
+        </div>
+
+        <div class="story-item">
+            <img src="https://lucid.content-delivery-one.com/cdn-cgi/image/w=600,format=auto,metadata=none/66c4384702f8f.png" alt="Volunteer 1">
+            <blockquote>"Volunteering with Helping Hands has been one of the most rewarding experiences. Seeing the smiles we bring makes every effort worthwhile."</blockquote>
+            <cite>Ravi Kumar <span class="role">(Volunteer)</span></cite>
+        </div>
+
+        <div class="story-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8JBlGcj9v0PDkuexXuNPiTW6753JTPBUjMw&s" alt="Beneficiary 2">
+            <blockquote>"The medical camp provided critical care when we needed it most. We are incredibly grateful for their prompt assistance."</blockquote>
+            <cite>Geeta Devi <span class="role">(Beneficiary)</span></cite>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <p>Have a question, suggestion, or want to get involved? Reach out to us!</p>
+        <form id="contactForm">
+            <input type="text" placeholder="Your Name" id="contactName" required />
+            <input type="email" placeholder="Your Email" id="contactEmail" required />
+            <textarea rows="7" placeholder="Your Message" id="contactMessage" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <div id="contactSuccessMessage" style="display: none;">
+            <p><i class="fas fa-check-circle"></i> Thank you for contacting us! We'll get back to you soon and appreciate your interest in our mission.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Helping Hands Foundation | All Rights Reserved.</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/yourngo" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com/yourngo" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/yourngo" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/yourngo" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const body = document.body; // Reference to the body element
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenu.classList.toggle('open'); // Toggle hamburger animation
+            menuOverlay.classList.toggle('active'); // Toggle overlay
+            body.classList.toggle('menu-open'); // Prevent body scroll
+        });
+
+        // Close mobile menu when clicking on overlay
+        menuOverlay.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            mobileMenu.classList.remove('open');
+            menuOverlay.classList.remove('active');
+            body.classList.remove('menu-open');
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            // Only add event listener if it's not the donate button (which opens a modal)
+            if (!anchor.classList.contains('cta-button-nav')) {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    navLinks.classList.remove('active'); // Close menu on link click (mobile)
+                    mobileMenu.classList.remove('open'); // Close hamburger animation
+                    menuOverlay.classList.remove('active'); // Hide overlay
+                    body.classList.remove('menu-open'); // Re-enable body scroll
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const successMessage = document.getElementById('contactSuccessMessage');
+            successMessage.style.display = 'block';
+            this.reset();
+
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 7000);
+        });
+
+        // Animated Number Counters
+        const statsGrid = document.querySelector('.stats-grid');
+        const counters = document.querySelectorAll('.stat-item .number');
+        const speed = 200;
+
+        const animateCounter = (counter) => {
+            const target = +counter.getAttribute('data-target');
+            let current = 0;
+            const increment = target / speed;
+
+            const updateCounter = () => {
+                if (current < target) {
+                    current += increment;
+                    counter.innerText = Math.ceil(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCounter();
+        };
+
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.classList.contains('stats-grid')) {
+                    counters.forEach(animateCounter);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+
+        if (statsGrid) {
+            observer.observe(statsGrid);
+        }
+
+        // Section Scroll Animations (Fade In)
+        const sections = document.querySelectorAll('section');
+
+        const sectionObserverOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, sectionObserverOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Image Lightbox (Modal)
+        const imageModal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("img01");
+        const captionText = document.getElementById("caption");
+        const galleryImages = document.querySelectorAll(".activities .gallery img");
+        const closeImageModalBtn = document.getElementById("closeImageModal");
+
+        galleryImages.forEach(img => {
+            img.onclick = function(){
+                imageModal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+                if (this.dataset.caption) {
+                    captionText.innerHTML = this.dataset.caption;
+                }
+            }
+        });
+
+        closeImageModalBtn.onclick = function() {
+            imageModal.style.display = "none";
+        }
+
+        imageModal.onclick = function(event) {
+            if (event.target == imageModal) {
+                imageModal.style.display = "none";
+            }
+        }
+
+        // Donation Modal
+        const donationModal = document.getElementById("donationModal");
+        const openDonateModalNav = document.getElementById("openDonateModalNav");
+        const openDonateModalHero = document.getElementById("openDonateModalHero");
+        const closeDonationModalBtn = document.getElementById("closeDonationModal");
+
+        openDonateModalNav.onclick = function(e) {
+            e.preventDefault();
+            donationModal.style.display = "block";
+            navLinks.classList.remove('active'); // Close mobile menu if open
+            mobileMenu.classList.remove('open'); // Close hamburger animation
+            menuOverlay.classList.remove('active'); // Hide overlay
+            body.classList.remove('menu-open'); // Re-enable body scroll
+        }
+
+        openDonateModalHero.onclick = function(e) {
+            e.preventDefault();
+            donationModal.style.display = "block";
+        }
+
+        closeDonationModalBtn.onclick = function() {
+            donationModal.style.display = "none";
+        }
+
+        donationModal.onclick = function(event) {
+            if (event.target == donationModal) {
+                donationModal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
